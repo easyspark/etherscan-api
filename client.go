@@ -132,6 +132,10 @@ func (c *Client) call(module, action string, param map[string]interface{}, outco
 		err = fmt.Errorf("etherscan server: %s", envelope.Error.Message)
 		return
 	}
+	if envelope.Result == nil {
+		err = fmt.Errorf("null result")
+		return
+	}
 
 	err = json.Unmarshal(envelope.Result, outcome)
 	if err != nil {
