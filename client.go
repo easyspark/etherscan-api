@@ -133,7 +133,7 @@ func (c *Client) call(module, action string, param map[string]interface{}, outco
 		return
 	}
 	fmt.Println(envelope.Result)
-	if envelope.Result == nil {
+	if string(envelope.Result) == "null" {
 		err = fmt.Errorf("null result")
 		return
 	}
