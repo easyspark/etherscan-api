@@ -132,7 +132,6 @@ func (c *Client) call(module, action string, param map[string]interface{}, outco
 		err = fmt.Errorf("etherscan server: %s", envelope.Error.Message)
 		return
 	}
-	fmt.Println(envelope.Result)
 	if string(envelope.Result) == "null" {
 		err = fmt.Errorf("null result")
 		return
