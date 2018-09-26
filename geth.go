@@ -31,3 +31,11 @@ func (c *Client) EstimateGas(from, to string, value, gasPrice *big.Int) (limit u
 	err = c.call("proxy", "eth_estimateGas", param, &limit)
 	return
 }
+
+func (c *Client) SendRawTransaction(hex string) (hash string, err error) {
+	param := M{
+		"hex": hex,
+	}
+	err = c.call("proxy", "eth_sendRawTransaction", param, &hash)
+	return
+}

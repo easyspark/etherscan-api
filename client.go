@@ -68,11 +68,13 @@ func (c *Client) call(module, action string, param map[string]interface{}, outco
 			err = fmt.Errorf("[ouch! panic recovered] please report this with what you did and what you expected, panic detail: %v", r)
 		}
 	}()
+
 	req, err := http.NewRequest(http.MethodGet, c.craftURL(module, action, param), http.NoBody)
 	if err != nil {
 		err = wrapErr(err, "http.NewRequest")
 		return
 	}
+
 	req.Header.Set("User-Agent", "etherscan-api(Go)")
 	req.Header.Set("Content-Type", "application/json; charset=utf-8")
 
