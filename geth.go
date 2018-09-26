@@ -15,7 +15,7 @@ func (c *Client) GetBlockByNumber(blockNum int64) (block Block, err error) {
 	return
 }
 
-func (c *Client) GasPrice() (price *big.Int, err error) {
+func (c *Client) GasPrice() (price *BigInt, err error) {
 	param := M{}
 	err = c.call("proxy", "eth_gasPrice", param, price)
 	return
