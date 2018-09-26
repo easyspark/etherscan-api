@@ -33,7 +33,7 @@ func (c *Client) EstimateGas(from, to string, value, gasPrice *big.Int) (limit u
 	}
 	limitStr := ""
 	err = c.call("proxy", "eth_estimateGas", param, &limitStr)
-	limit, err = strconv.ParseUint(limitStr, 16, 64)
+	limit, err = strconv.ParseUint(limitStr, 0, 0)
 	return
 }
 
