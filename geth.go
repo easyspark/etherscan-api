@@ -1,6 +1,7 @@
 package etherscan
 
 import (
+	"github.com/ethereum/go-ethereum/common/math"
 	"math/big"
 	"strconv"
 )
@@ -15,9 +16,11 @@ func (c *Client) GetBlockByNumber(blockNum int64) (block Block, err error) {
 	return
 }
 
-func (c *Client) GasPrice() (price *BigInt, err error) {
+func (c *Client) GasPrice() (price *big.Int, err error) {
 	param := M{}
-	err = c.call("proxy", "eth_gasPrice", param, price)
+	result := ""
+	err = c.call("proxy", "eth_gasPrice", param, &result)
+	price, _ = math.ParseBig256(result)
 	return
 }
 
