@@ -6,6 +6,15 @@ import (
 	"strconv"
 )
 
+func (c *Client) GetTransactionCount(address string) (count uint64, err error) {
+	param := M{
+		"address": address,
+		"tag":     "latest",
+	}
+	err = c.call("proxy", "eth_getTransactionCount", param, &count)
+	return
+}
+
 func (c *Client) GetBlockByNumber(blockNum int64) (block Block, err error) {
 	param := M{
 		"boolean": "true",
