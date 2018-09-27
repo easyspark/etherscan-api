@@ -11,7 +11,9 @@ func (c *Client) GetTransactionCount(address string) (count uint64, err error) {
 		"address": address,
 		"tag":     "latest",
 	}
-	err = c.call("proxy", "eth_getTransactionCount", param, &count)
+	var countString string
+	err = c.call("proxy", "eth_getTransactionCount", param, &countString)
+	count, err = strconv.ParseUint(countString, 0, 0)
 	return
 }
 
