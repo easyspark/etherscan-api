@@ -35,12 +35,13 @@ func (c *Client) GasPrice() (price *big.Int, err error) {
 	return
 }
 
-func (c *Client) EstimateGas(from, to string, value, gasPrice *big.Int) (limit uint64, err error) {
+func (c *Client) EstimateGas(from, to string, value, gasPrice *big.Int, data []byte) (limit uint64, err error) {
 	param := M{
 		"value":    value.Text(16),
 		"to":       to,
 		"form":     from,
 		"gasPrice": gasPrice.Text(16),
+		"data":     string(data),
 	}
 	limitStr := ""
 	err = c.call("proxy", "eth_estimateGas", param, &limitStr)
